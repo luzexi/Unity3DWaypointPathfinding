@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class PathNodeWalker : MonoBehaviour
+// not finish
+public class CustomPathNodeWalker : MonoBehaviour
 {
 	private Vector3[] mPath;
 	public Transform mTransform;

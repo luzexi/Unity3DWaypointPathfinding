@@ -97,6 +97,7 @@ public class PathNodeEditor : MonoBehaviour
 				mPathNode.mLinkID.Add(linknode.mId);
 			}
 		}
+		CQuickSort.Sort<int>(mPathNode.mLinkID, 0, mPathNode.mLinkID.Count-1, PathNodeManager.SortIntCompare);
 		result.Add(mPathNode);
 		return mPathNode;
 	}

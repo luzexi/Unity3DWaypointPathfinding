@@ -69,9 +69,12 @@ public class PathNodeCreateEditor : MonoBehaviour
         Refesh();
         List<PathNode> lstnode = GeneratePathNode();
         Debug.LogError("lstnode.Count " + lstnode.Count);
+
+        CQuickSort.Sort<PathNode>(lstnode, 0, lstnode.Count-1, PathNodeManager.SortPathNodeCompare); //sort
         bw.Write(lstnode.Count);
         for(int i = 0 ; i<lstnode.Count ; i++)
         {
+        	// Debug.LogError("node id " + lstnode[i].mId);
         	lstnode[i].Write(bw);
         }
         bw.Close();
@@ -94,6 +97,7 @@ public class PathNodeCreateEditor : MonoBehaviour
 			nodeeditor.mGroupID = node.mGroupID;
 			nodeeditor.mValue = node.mValue;
 			nodeeditor.transform.position = node.mPosition;
+			nodeeditor.transform.rotation = node.mRotation;
 			if(dict_nodeeditor.ContainsKey(nodeeditor.mGroupID))
 			{
 				PathNodeEditor root = dict_nodeeditor[nodeeditor.mGroupID];

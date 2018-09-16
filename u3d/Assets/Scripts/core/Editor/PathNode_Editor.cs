@@ -25,7 +25,7 @@ public class PathNode_Editor : Editor
 		serializedObject.Update();
 		PathNodeEditor pathnode = target as PathNodeEditor;
 		// EditorGUILayout.PropertyField(mAddObj);
-		mAddObj = EditorGUILayout.ObjectField("Link", mAddObj, typeof(PathNodeEditor), true) as PathNodeEditor;
+		mAddObj = EditorGUILayout.ObjectField("Link", mAddObj, typeof(PathNodeEditor), true, GUILayout.Height(100)) as PathNodeEditor;
 		if(mAddObj != null)
 		{
 			if(mAddObj != pathnode)
@@ -60,5 +60,27 @@ public class PathNode_Editor : Editor
 		}
 		serializedObject.ApplyModifiedProperties();
 	}
+
+	void OnSceneGUI()
+	{
+		PathNodeEditor pathnode = target as PathNodeEditor;
+		Vector3 wpPos = pathnode.transform.position;
+        float size = HandleUtility.GetHandleSize(wpPos) * 0.4f;
+
+        //do not draw waypoint header if too far away
+        if (size < 3f)
+        {
+            //begin 2D GUI block
+            Handles.BeginGUI();
+            //translate waypoint vector3 position in world space into a position on the screen
+            var guiPoint = HandleUtility.WorldToGUIPoint(wpPos);
+            //create rectangle with that positions and do some offset
+            var rect = new Rect(guiPoint.x - 50.0f, guiPoint.y - 40, 100, 20);
+            //draw box at rect position with current waypoint name
+            GUI.Box(rect, pathnode.gameObject.name);
+            Handles.EndGUI(); //end GUI block
+        }
+	}
+	
 }
 

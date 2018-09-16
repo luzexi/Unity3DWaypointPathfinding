@@ -11,6 +11,7 @@ public class PathNode
 	public int mGroupID = 0;
 	public int mValue = 1;
 	public Vector3 mPosition = Vector3.zero;
+	public Quaternion mRotation = Quaternion.identity;
 	public List<int> mLinkID = new List<int>();
 
 	//logic property
@@ -43,6 +44,11 @@ public class PathNode
 		mPosition.x = x;
 		mPosition.y = y;
 		mPosition.z = z;
+		x = br.ReadSingle();
+		y = br.ReadSingle();
+		z = br.ReadSingle();
+		float w = br.ReadSingle();
+		mRotation = new Quaternion(x, y, z, w);
 		int link_count = br.ReadInt32();
 		for(int i = 0 ; i<link_count ; i++)
 		{
@@ -59,6 +65,10 @@ public class PathNode
 		bw.Write(mPosition.x);
 		bw.Write(mPosition.y);
 		bw.Write(mPosition.z);
+		bw.Write(mRotation.x);
+		bw.Write(mRotation.y);
+		bw.Write(mRotation.z);
+		bw.Write(mRotation.w);
 		bw.Write(mLinkID.Count);
 		for(int i = 0 ; i<mLinkID.Count ; i++)
 		{
