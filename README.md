@@ -60,5 +60,7 @@ Welcome to my blog [www.luzexi.com](http://www.luzexi.com)
 
 			两套逻辑相同，但是第一套没有GameObject节点，第二套有GameObject节点，效率差了点，但编辑方便顺手。
 		
-		7，TODO，自动生成整个场景的网格节点
+		7，TODO，基于节点与连接的A*寻路
+
+		8，TODO，自动生成整个场景的网格节点
 
